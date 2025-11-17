@@ -41,3 +41,23 @@ class Person {
 
 // const person2 = new Person("Alice", 25);
 // console.log(person2.getDetails());
+interface IProduct {
+  title: string;
+  rating: number;
+}
+
+const filterByRating = (products: IProduct[]) => {
+  const result = products.filter((product: IProduct) => product.rating >= 4);
+  return result;
+};
+
+// const books = [
+//   { title: "Book A", rating: 4.5 },
+//   { title: "Book B", rating: 3.2 },
+//   { title: "Book C", rating: 5.0 },
+//   { title: "Book D", rating: 4.0 },
+//   { title: "Book E", rating: 3.99 },
+//   { title: "Book F", rating: 4.1 },
+// ];
+
+// console.log(filterByRating(books));
