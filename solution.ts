@@ -19,8 +19,8 @@ const getLength = <T>(values: T[] | string): number | undefined => {
   }
   if (typeof values === "string") return values.length;
 };
-// console.log(getLength("typescript"));
-// console.log(getLength([10, 20, 30, 40]));
+// console.log(getLength(""));
+// console.log(getLength([]));
 
 class Person {
   name: string;
@@ -128,3 +128,31 @@ const getUniqueValues = (
 // const array1 = ["A", "B", "C", "D"];
 // const array2 = ["C", "D", "E", "F"];
 // console.log(getUniqueValues(array1, array2));
+
+type TProduct = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+const calculateTotalPrice = (products: TProduct[]): number => {
+  if (products.length === 0) {
+    return 0;
+  }
+
+  const total = products.reduce((acc: number, product: TProduct) => {
+    const discount = product.discount ?? 0; // treat undefined as 0
+    const priceAfterDiscount = product.price * (1 - discount / 100);
+    return acc + product.quantity * priceAfterDiscount;
+  }, 0);
+
+  return total;
+};
+// const products = [
+//   { name: "Pen", price: 10, quantity: 2 },
+//   { name: "Notebook", price: 25, quantity: 3, discount: 10 },
+//   { name: "Bag", price: 50, quantity: 1, discount: 20 },
+// ];
+
+// console.log(calculateTotalPrice(products));
