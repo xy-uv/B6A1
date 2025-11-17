@@ -106,3 +106,25 @@ const printBookDetails = (book: Book): void => {
 // };
 
 // printBookDetails(myBook);
+
+type TUniqueValues = string | number;
+
+const getUniqueValues = (
+  values1: TUniqueValues[],
+  values2: TUniqueValues[]
+): TUniqueValues[] => {
+  const mergedValues = [...values1, ...values2];
+  const resultValues: Array<TUniqueValues> = [];
+  mergedValues.forEach((el: TUniqueValues) => {
+    if (!resultValues.includes(el)) {
+      resultValues.push(el);
+    }
+  });
+  return resultValues;
+};
+
+// const array1 = [1, 2, 3, 4, 5];
+// const array2 = [3, 4, 5, 6, 7];
+// const array1 = ["A", "B", "C", "D"];
+// const array2 = ["C", "D", "E", "F"];
+// console.log(getUniqueValues(array1, array2));
