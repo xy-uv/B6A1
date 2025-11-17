@@ -113,21 +113,43 @@ const getUniqueValues = (
   values1: TUniqueValues[],
   values2: TUniqueValues[]
 ): TUniqueValues[] => {
-  const mergedValues = [...values1, ...values2];
-  const resultValues: Array<TUniqueValues> = [];
-  mergedValues.forEach((el: TUniqueValues) => {
-    if (!resultValues.includes(el)) {
-      resultValues.push(el);
+  const result: TUniqueValues[] = [];
+  let i,
+    j,
+    idx = 0;
+
+  for (i = 0; i < values1.length; i++) {
+    let exists = false;
+    for (j = 0; j < idx; j++) {
+      if (result[j] === values1[i]) {
+        exists = true;
+        break;
+      }
     }
-  });
-  return resultValues;
+    if (!exists) {
+      result[idx++] = values1[i];
+    }
+  }
+
+  for (i = 0; i < values2.length; i++) {
+    let exists = false;
+    for (j = 0; j < idx; j++) {
+      if (result[j] === values2[i]) {
+        exists = true;
+        break;
+      }
+    }
+    if (!exists) {
+      result[idx++] = values2[i];
+    }
+  }
+
+  return result;
 };
 
-// const array1 = [1, 2, 3, 4, 5];
-// const array2 = [3, 4, 5, 6, 7];
-// const array1 = ["A", "B", "C", "D"];
-// const array2 = ["C", "D", "E", "F"];
-// console.log(getUniqueValues(array1, array2));
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
+console.log(getUniqueValues(array1, array2));
 
 type TProduct = {
   name: string;
